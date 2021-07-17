@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+$color-white: #fff;
+$color-btn: #dfdbdf;
+$color-play: #cdc2d0;
+$color-progress: #fe8daa;
+
+/* offset-x | offset-y | blur-radius | spread-radius | color */
+$play-border: 0 10px 25px 0 rgba(243, 72, 72, 0.6);
+$pause-border: 0 10px 25px 0 rgba(78, 247, 148, 0.6);
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: linear-gradient(
+        0deg,
+        rgba(247,247,247,1) 23.8%,
+        rgba(252,212,221,1) 92%
+    );
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.music__container{
+    background-color: $color-white;
+    border-radius: 15px;
+    // box-shadow: 0 20px 20px 0 rgba(252,169,169,0.6);
+    display: flex;
+    padding: 20px 30px;
+    position: relative;
+    margin: 100px 0;
+    z-index: 10;
+
+    &-info{
+        background-color: rgba(255,255,255,0.5);
+        border-radius: 15px 15px 0 0;
+        position: absolute;
+        top: 0;
+        left: 20px;
+        width: calc(100% - 40px);
+        padding: 20px 10px 20px 150px;
+        // Initially it should be hidden
+        opacity: 0;
+        transform: translateY(0%);
+        transition: transform .3s ease-in,
+                    opacity .3s ease-in;
+        z-index: 0;
+
+        h4{
+            margin-bottom: 5px;
+        }
+    }
+}
+.give-border{
+    box-shadow: $play-border;
+}
+.remove-border{
+    box-shadow: $pause-border;
+}
+.music__container-progress{
+    background: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    // margin: 5px 0;
+    height: 4px;
+    width: 100%;
+}
+
+.progress{
+    background-color: $color-progress;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width .1s linear;
+}
+ 
+.play .music__container-info{
+    // Show the progress bar
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+.container__img{
+    position: relative;
+    width: 110px;
+    // White spot
+    &::after{
+        content: "";
+        background-color: $color-white;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        transform: translate(-50%, -50%);
+    }
+    img{
+        border-radius: 50%;
+        object-fit: cover;
+        height: 110px;
+        width: inherit;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        animation: rotate 3s linear infinite;
+        animation-play-state: paused;
+    }
+}
+
+.music__container.play .container__img img{
+    animation-play-state: running;
+}
+
+
+@keyframes rotate{
+    from{
+        transform: rotate();
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+.navigation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    &__action-btn{
+        background-color: $color-white;
+        border: 0;
+        color: $color-btn;
+        font-size: 20px;
+        cursor: pointer;
+        margin: 0 20px;
+        &:not(:last-child){
+            padding-right: 10px;
+        }
+        &:focus{
+            outline: none;
+        }
+
+        &-play{
+            color: $color-play;
+            font-size: 30px;
+            &:active{
+                transform: scale(.9);
+            }
+        }
+    }
+}

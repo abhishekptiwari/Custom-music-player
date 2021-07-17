@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./sass/main.css">
+    <title>Music Player</title>
+</head>
+<body>
+    <h1>Music player</h1>
+    <div class="music__container" id="music__container">
+        <div class="music__container-info">
+            <h4 id="title" class="title"></h4>
+                <div class="music__container-progress" id="progress-container">
+                    <div class="progress" id="progress"></div>
+                </div>
+        </div>
+        <audio src="music/ukulele.mp3" id="audio"></audio>
+        <div class="container__img">
+            <img src="./images/ukulele.jpg" alt="music cover photo" id="cover">
+        </div>
+        <div class="navigation">
+            <button id="prev" class="navigation__action-btn">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+            </button>
+            <button id="play" class="navigation__action-btn navigation__action-btn-play">
+                <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
+            <button id="next" class="navigation__action-btn navigation__action-btn">
+                <i class="fa fa-forward" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
